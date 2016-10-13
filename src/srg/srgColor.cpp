@@ -1,4 +1,4 @@
-#include "srgColor.h"
+#include "srg/srgColor.h"
 
 srgColor::srgColor()
 {

@@ -1,4 +1,5 @@
-#include "SimpleRenderer.h"
+#include "Renderer/SimpleRenderer.h"
+
 #include "srDyn/srIRSensor.h"
 #include "srDyn/srRangeFinder.h"
 

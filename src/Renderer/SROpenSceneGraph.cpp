@@ -7,7 +7,7 @@ Version information
 v0.001 : 2009-04-15			Jeongseok Lee
 *******************************************************************************/
 
-#include "SROpenSceneGraph.h"
+#include "Renderer/SROpenSceneGraph.h"
 
 //#include "../Engine/XEngine.h"
 

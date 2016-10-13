@@ -1,6 +1,7 @@
 #include "srDyn/srObject.h"
 #include <iostream>
 #include <string.h>
+#include <cstdio>
 
 unsigned int srObject::s_CountCreation = 0;
 unsigned int srObject::s_CountNumObj = 0;
@@ -24,7 +25,7 @@ srObject::srObject()
 #ifdef WIN32
 #else
 #endif
-	sprintf(m_Name, "SRObj-%d", s_CountCreation);
+    std::sprintf(m_Name, "SRObj-%d", s_CountCreation);
 #endif
 };
 

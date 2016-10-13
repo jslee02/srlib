@@ -7,7 +7,7 @@
  *
  */
 
-#include "srSpring.h"
+#include "srDyn/srSpring.h"
 
 srSpring::srSpring()
 : m_LeftLink(NULL)

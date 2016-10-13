@@ -1,4 +1,4 @@
-#include "../srDyn/srPrismaticJoint.h"
+#include "srDyn/srPrismaticJoint.h"
 #include "srDyn/srLink.h"
 //#include "../srDyn/srState.h"
 

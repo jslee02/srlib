@@ -1,5 +1,5 @@
-#include "srgCamera.h"
-#include "srgMath.h"
+#include "srg/srgCamera.h"
+#include "srg/srgMath.h"
 
 const float srgCamera::m_fMinFocusLength = RGL_CAMERA_MIN_FOCUSLENGTH;
 const int	srgCamera::m_nApproachRateInv = RGL_CAMERA_APPROACH_INV_RATE;

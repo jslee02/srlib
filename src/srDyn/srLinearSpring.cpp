@@ -7,7 +7,7 @@
  *
  */
 
-#include "srLinearSpring.h"
+#include "srDyn/srLinearSpring.h"
 
 srLinearSpring::srLinearSpring()
 : m_K(1.0)
@@ -18,90 +18,90 @@ srLinearSpring::srLinearSpring()
 , m_DirectionalVector(Vec3(0.0))
 , m_LeftPosition(Vec3(0.0))
 , m_RightPosition(Vec3(0.0))
-{	
+{
 };
 
 void srLinearSpring::SetK(real k)
 {
-	if(k >= 0.0)
-		m_K = k;
+    if(k >= 0.0)
+        m_K = k;
 };
 
 void srLinearSpring::SetC(real c)
 {
-	if(c >= 0.0)
-		m_C = c;
+    if(c >= 0.0)
+        m_C = c;
 };
 
 void srLinearSpring::SetInitialLength(real l)
 {
-	if(l >= 0.0)
-		m_InitialLength = l;
+    if(l >= 0.0)
+        m_InitialLength = l;
 };
 
 real& srLinearSpring::GetLength()
 {
-	return m_CurrentLength;
+    return m_CurrentLength;
 };
 
 void srLinearSpring::Initialize()
 {
-	if(m_InitialLength < 0.0) {
-		SetInitialLength(UpdateLength());
-	}
+    if(m_InitialLength < 0.0) {
+        SetInitialLength(UpdateLength());
+    }
 };
 
 void srLinearSpring::SetLeftLinkPosition(Vec3 lp)
 {
-	m_LeftPosition = lp;
-	srSpring::SetLeftLinkPosition(m_LeftPosition);
+    m_LeftPosition = lp;
+    srSpring::SetLeftLinkPosition(m_LeftPosition);
 };
 
 void srLinearSpring::SetRightLinkPosition(Vec3 rp)
 {
-	m_RightPosition = rp;
-	srSpring::SetRightLinkPosition(m_RightPosition);
+    m_RightPosition = rp;
+    srSpring::SetRightLinkPosition(m_RightPosition);
 };
 
 void srLinearSpring::SetLeftLinkPosition(SE3 lp)
 {
-	m_LeftPosition = lp.GetPosition();
-	srSpring::SetLeftLinkPosition(m_LeftPosition);
+    m_LeftPosition = lp.GetPosition();
+    srSpring::SetLeftLinkPosition(m_LeftPosition);
 };
 
 void srLinearSpring::SetRightLinkPosition(SE3 rp)
 {
-	m_RightPosition = rp.GetPosition();
-	srSpring::SetRightLinkPosition(m_RightPosition);
+    m_RightPosition = rp.GetPosition();
+    srSpring::SetRightLinkPosition(m_RightPosition);
 };
 
 //* Distance from the left end to the right end.
 real& srLinearSpring::UpdateLength()
 {
-	m_DirectionalVector = m_RightLink->m_Frame * m_RightPosition - m_LeftLink->m_Frame * m_LeftPosition;
-	m_CurrentLength = m_DirectionalVector.Normalize();
-	return m_CurrentLength;
+    m_DirectionalVector = m_RightLink->m_Frame * m_RightPosition - m_LeftLink->m_Frame * m_LeftPosition;
+    m_CurrentLength = m_DirectionalVector.Normalize();
+    return m_CurrentLength;
 };
 
 real srLinearSpring::UpdateSpeed()
 {
-	Vec3 dv = m_RightLink->GetLinearVel(m_RightPosition) - m_LeftLink->GetLinearVel(m_LeftPosition);
-	real ds = Inner(m_DirectionalVector, dv);
-	return ds;
+    Vec3 dv = m_RightLink->GetLinearVel(m_RightPosition) - m_LeftLink->GetLinearVel(m_LeftPosition);
+    real ds = Inner(m_DirectionalVector, dv);
+    return ds;
 };
 
 void srLinearSpring::UpdateForce()
 {
-	m_Force = (m_K * (UpdateLength() - m_InitialLength) + m_C * UpdateSpeed()) * m_DirectionalVector;
-	m_Force *= m_Active;
+    m_Force = (m_K * (UpdateLength() - m_InitialLength) + m_C * UpdateSpeed()) * m_DirectionalVector;
+    m_Force *= m_Active;
 };
 
 dse3 srLinearSpring::GetForceOnLeft()
 {
-	return InvdAd(m_LeftPosition, InvRotate(m_LeftLink->m_Frame, m_Force));
+    return InvdAd(m_LeftPosition, InvRotate(m_LeftLink->m_Frame, m_Force));
 };
 
 dse3 srLinearSpring::GetForceOnRight()
 {
-	return InvdAd(m_RightPosition, InvRotate(m_RightLink->m_Frame, -m_Force));
+    return InvdAd(m_RightPosition, InvRotate(m_RightLink->m_Frame, -m_Force));
 };

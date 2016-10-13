@@ -1,5 +1,8 @@
-#include "srDyn/srCollision.h"
 #include "srDyn/srIRSensor.h"
+
+#include <cstdio>
+
+#include "srDyn/srCollision.h"
 
 srIRSensor::srIRSensor()
 : srSensor()
@@ -32,7 +35,7 @@ void srIRSensor::SetMaxRange(real max)
 		m_MaxRange = max;
 	}
 	else{
-		printf("IR sensor maximum range setting incorrect: Max range > Min range => 0.0.\n");
+        printf("IR sensor maximum range setting incorrect: Max range > Min range => 0.0.\n");
 	}
 }
 

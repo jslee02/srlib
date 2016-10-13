@@ -49,7 +49,9 @@
 */
 
 
-#include "srgBitmap.h"
+#include "srg/srgBitmap.h"
+
+#include <cstdio>
 
 _Bitmap::_Bitmap()
 {
@@ -119,17 +121,17 @@ BMPError _Bitmap::BMPLoad(char* fname)
 {
 	if(sizeof(int) != 4) return BMPBADINT;
 		
-	FILE* f = fopen(fname, "rb");		//open for reading in binary mode
+    FILE* f = fopen(fname, "rb");		//open for reading in binary mode
 
 	if(!f) return BMPNOOPEN;
 
 	char header[54];
 
-	fread(header, 54, 1, f);			//read the 54bit main header
+    fread(header, 54, 1, f);			//read the 54bit main header
 
 	if(header[0] != 'B' || header[1] != 'M') 
 	{
-		fclose(f);
+        fclose(f);
 		return BMPNOTABITMAP;		//all bitmaps should start "BM"
 	}
 
@@ -206,17 +208,17 @@ BMPError _Bitmap::BMPLoad(char* fname)
 		break;
 
 	default:
-		fclose(f);
+        fclose(f);
 		return BMPUNKNOWNFORMAT;
 	}
 
-	if(ferror(f))
+    if(ferror(f))
 	{
-		fclose(f);
+        fclose(f);
 		return BMPFILEERROR;
 	}
 	
-	fclose(f);
+    fclose(f);
 
 	return BMPNOERROR;
 }
