@@ -1,7 +1,7 @@
 file(GLOB_RECURSE
-  HEADERS
+  headers
   ${CMAKE_CURRENT_SOURCE_DIR}/*.h
   ${CMAKE_CURRENT_SOURCE_DIR}/*.hpp
 )
 
-set(${PROJECT_NAME}_HEADERS ${HEADERS})
+srlib_add_headers(${headers})
