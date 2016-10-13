@@ -1,0 +1,4 @@
+add_subdirectory(GettingStarted)
+add_subdirectory(HelloWorld)
+add_subdirectory(MobileRobots)
+add_subdirectory(Template)
