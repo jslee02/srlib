@@ -19,7 +19,7 @@ v0.005 : 2009-01-23			Jeongseok Lee
 // Windows
 #ifdef WIN32
 	#define GLUT_DISABLE_ATEXIT_HACK
-	#include <gl/GLut.h>
+	#include <GL/glut.h>
 #endif
 
 // Mac OS X

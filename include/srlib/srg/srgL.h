@@ -19,7 +19,7 @@ OpenGL libraries for multi platform.
 	#include <windows.h>
 	#include <GL/glew.h> 
 	#define GLUT_DISABLE_ATEXIT_HACK
-	#include <gl/GLut.h>
+	#include <GL/glut.h>
 
 	#define _CRT_SECURE_NO_DEPRECATE 
 	#define _CRT_SECURE_NO_WARNINGS 
