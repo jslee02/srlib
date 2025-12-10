@@ -67,5 +67,5 @@ cmd = "cmake --build build-cov --target test"
 depends-on = ["coverage-build"]
 
 [tasks.coverage-report]
-cmd = "cmake -E chdir build-cov gcovr -r .. --xml-pretty coverage.xml --html-details coverage.html --print-summary"
+cmd = "cmake -E chdir build-cov gcovr -r .. --xml coverage.xml --xml-pretty --html-details coverage.html --print-summary"
 depends-on = ["coverage-test"]
