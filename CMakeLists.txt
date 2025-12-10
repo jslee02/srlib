@@ -1,5 +1,5 @@
 # minimum required version of cmake
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.11)
 
 # Project name. Stored in ${PROJECT_NAME}.
 project(srlib)
@@ -17,6 +17,9 @@ include(srlibUtils)
 #-------------------------------------------------------------------------------
 
 # OpenGL
+if(POLICY CMP0072)
+  cmake_policy(SET CMP0072 NEW)  # Prefer GLVND OpenGL when available.
+endif()
 find_package(OpenGL QUIET)
 
 # GLEW

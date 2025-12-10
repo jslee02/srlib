@@ -1,0 +1,23 @@
+[workspace]
+authors = ["Jeongseok Lee <jslee02@gmail.com>"]
+channels = ["conda-forge"]
+name = "srlib"
+platforms = ["linux-64"]
+version = "0.1.0"
+
+[dependencies]
+cmake = "*"
+ninja = "*"
+
+[tasks]
+
+[tasks.configure]
+cmd = "cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release"
+
+[tasks.build]
+cmd = "cmake --build build"
+depends-on = ["configure"]
+
+[tasks.clean]
+cmd = "cmake --build build --target clean"
+depends-on = ["configure"]
