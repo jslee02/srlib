@@ -13,6 +13,7 @@ ninja = ">=1.13.2,<2"
 [target.linux-64.dependencies]
 freeglut = ">=3.2.2,<4"
 libglu = ">=9.0.3,<10"
+libgl = ">=1.7,<2"
 
 [target.win-64.dependencies]
 freeglut = ">=3.2.2,<4"
