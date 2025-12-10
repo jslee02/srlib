@@ -8,6 +8,17 @@ set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 
 include(srlibUtils)
 
+option(SRLIB_ENABLE_OSG "Build OpenSceneGraph renderer (requires OpenSceneGraph)" ON)
+
+set(_srlib_osg_components osg osgDB osgGA osgUtil osgViewer osgShadow)
+if(SRLIB_ENABLE_OSG)
+  find_package(OpenSceneGraph QUIET COMPONENTS ${_srlib_osg_components})
+  if(NOT OPENSCENEGRAPH_FOUND)
+    message(STATUS "OpenSceneGraph not found; disabling OpenSceneGraph renderer (SROpenSceneGraph).")
+    set(SRLIB_ENABLE_OSG OFF)
+  endif()
+endif()
+
 #===============================================================================
 # Find dependencies
 #===============================================================================
