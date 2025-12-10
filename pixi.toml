@@ -33,17 +33,17 @@ cmd = "cmake --build build --target clean"
 depends-on = ["configure"]
 
 [tasks.run-helloworld]
-cmd = "cmake --build build --target HelloWorld && cmake -E chdir build/bin/examples ./HelloWorld"
-depends-on = ["configure"]
+cmd = "cmake -E chdir build/bin/examples ./HelloWorld"
+depends-on = ["build"]
 
 [tasks.run-getting-started]
-cmd = "cmake --build build --target GettingStarted && cmake -E chdir build/bin/examples ./GettingStarted"
-depends-on = ["configure"]
+cmd = "cmake -E chdir build/bin/examples ./GettingStarted"
+depends-on = ["build"]
 
 [tasks.run-mobile-robots]
-cmd = "cmake --build build --target MobileRobots && cmake -E chdir build/bin/examples ./MobileRobots"
-depends-on = ["configure"]
+cmd = "cmake -E chdir build/bin/examples ./MobileRobots"
+depends-on = ["build"]
 
 [tasks.run-template]
-cmd = "cmake --build build --target Template && cmake -E chdir build/bin/examples ./Template"
-depends-on = ["configure"]
+cmd = "cmake -E chdir build/bin/examples ./Template"
+depends-on = ["build"]
