@@ -5,6 +5,12 @@
 
 Visit the [website](http://robotics.snu.ac.kr/srlib/) of srLib for more information.
 
+## Build & Run (pixi)
+
+- Requirements: [pixi](https://pixi.sh) installed.
+- Configure/build (Release, OSG on): `pixi run build`
+- Run examples: `pixi run run-helloworld`, `pixi run run-getting-started`, `pixi run run-mobile-robots`, `pixi run run-template`
+
 ## Demo
 
 HelloWorld example:
