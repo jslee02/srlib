@@ -23,3 +23,8 @@ target_link_libraries(${PROJECT_NAME}
   PRIVATE
     $<$<BOOL:${SRLIB_ENABLE_OSG}>:${SRLIB_OSG_LIBRARIES}>
 )
+
+if(MSVC)
+  # Avoid std::byte vs Windows byte conflict in SDK headers.
+  target_compile_definitions(${PROJECT_NAME} PUBLIC _HAS_STD_BYTE=0)
+endif()
