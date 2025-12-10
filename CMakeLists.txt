@@ -9,6 +9,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 option(SRLIB_ENABLE_OSG "Build OpenSceneGraph renderer (requires OpenSceneGraph)" OFF)
+option(SRLIB_ENABLE_TESTS "Build srLib tests (requires GTest)" OFF)
 
 #===============================================================================
 # Find dependencies (target-based where possible)
@@ -164,3 +165,8 @@ endif()
 add_subdirectory(include)
 add_subdirectory(src)
 add_subdirectory(examples)
+
+if(SRLIB_ENABLE_TESTS)
+  enable_testing()
+  add_subdirectory(tests)
+endif()
