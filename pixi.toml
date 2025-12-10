@@ -2,12 +2,20 @@
 authors = ["Jeongseok Lee <jslee02@gmail.com>"]
 channels = ["conda-forge"]
 name = "srlib"
-platforms = ["linux-64"]
+platforms = ["linux-64", "win-64", "osx-arm64"]
 version = "0.1.0"
 
 [dependencies]
-cmake = "*"
-ninja = "*"
+cmake = ">=4.2.1,<5"
+glew = ">=2.2.0,<3"
+ninja = ">=1.13.2,<2"
+
+[target.linux-64.dependencies]
+freeglut = ">=3.2.2,<4"
+libglu = ">=9.0.3,<10"
+
+[target.win-64.dependencies]
+freeglut = ">=3.2.2,<4"
 
 [tasks]
 
