@@ -4,6 +4,12 @@
 
 Visit the [website](http://robotics.snu.ac.kr/srlib/) of srLib for more information.
 
+## Demo
+
+HelloWorld example (auto-play GIF):
+
+![HelloWorld demo](assets/helloworld-demo.gif)
+
 ## Contributors
 
 Names recorded in source and header comments (may be incomplete; pulled from file annotations):
