@@ -30,3 +30,7 @@
 # pixi environments
 .pixi/*
 !.pixi/config.toml
+
+# Build artifacts
+build/
+build-cov/
