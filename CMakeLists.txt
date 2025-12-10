@@ -26,19 +26,9 @@ find_package(OpenGL QUIET)
 find_package(GLEW QUIET)
 
 # GLUT
-if(WIN32 AND NOT CYGWIN)
-  set(GLUT_INCLUDE_DIR "@CMAKE_INSTALL_PREFIX@/include")
-  set(GLUT_LIBRARIES glut32)
-  set(HAVE_GLUT TRUE)
-else()
-  find_package(GLUT QUIET)
-  if(GLUT_FOUND)
-    set(GLUT_LIBRARIES ${GLUT_glut_LIBRARY})
-    set(HAVE_GLUT TRUE)
-  else()
-    set(HAVE_GLUT FALSE)
-  endif()
-endif()
+find_package(GLUT REQUIRED)
+set(GLUT_LIBRARIES ${GLUT_glut_LIBRARY})
+set(HAVE_GLUT TRUE)
 
 
 
