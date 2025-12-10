@@ -11,6 +11,7 @@ glew = ">=2.2.0,<3"
 ninja = ">=1.13.2,<2"
 openscenegraph = ">=3.6.5,<4"
 gtest = ">=1.14,<2"
+gcovr = ">=7,<9"
 
 [target.linux-64.dependencies]
 freeglut = ">=3.2.2,<4"
@@ -52,3 +53,19 @@ depends-on = ["build"]
 [tasks.test]
 cmd = "cmake --build build --target test"
 depends-on = ["build"]
+
+# Coverage (GCC/Clang) — builds in build-cov to avoid polluting default artifacts.
+[tasks.coverage-configure]
+cmd = "cmake -S . -B build-cov -G Ninja -DCMAKE_BUILD_TYPE=Debug -DSRLIB_ENABLE_OSG=ON -DSRLIB_ENABLE_TESTS=ON -DCMAKE_CXX_FLAGS=\"--coverage\" -DCMAKE_EXE_LINKER_FLAGS=\"--coverage\" -DCMAKE_SHARED_LINKER_FLAGS=\"--coverage\""
+
+[tasks.coverage-build]
+cmd = "cmake --build build-cov"
+depends-on = ["coverage-configure"]
+
+[tasks.coverage-test]
+cmd = "cmake --build build-cov --target test"
+depends-on = ["coverage-build"]
+
+[tasks.coverage-report]
+cmd = "cmake -E chdir build-cov gcovr -r .. --xml-pretty coverage.xml --html-details coverage.html --print-summary"
+depends-on = ["coverage-test"]
