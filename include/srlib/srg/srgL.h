@@ -14,6 +14,11 @@ v0.001 : 2008-11-11			Jeongseok Lee
 OpenGL libraries for multi platform.
 */
 
+// Avoid std::byte/byte ambiguity on MSVC + Windows headers
+#if defined(_MSC_VER) && !defined(_HAS_STD_BYTE)
+#define _HAS_STD_BYTE 0
+#endif
+
 // Windows
 #ifdef WIN32
 	#include <windows.h>
