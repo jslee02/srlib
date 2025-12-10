@@ -3,14 +3,18 @@ cmake_minimum_required(VERSION 3.16)
 find_package(GTest CONFIG REQUIRED)
 include(GoogleTest)
 
-add_executable(srlib_smoke_test
+set(SRLIB_TEST_SOURCES
   srlib_smoke_test.cpp
+  common/common_types_test.cpp
+  common/common_utils_test.cpp
 )
 
-target_link_libraries(srlib_smoke_test
+add_executable(srlib_tests ${SRLIB_TEST_SOURCES})
+
+target_link_libraries(srlib_tests
   PRIVATE
     ${PROJECT_NAME}
     GTest::gtest_main
 )
 
-gtest_discover_tests(srlib_smoke_test)
+gtest_discover_tests(srlib_tests)
