@@ -8,7 +8,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 
 include(srlibUtils)
 
-option(SRLIB_ENABLE_OSG "Build OpenSceneGraph renderer (requires OpenSceneGraph)" ON)
+option(SRLIB_ENABLE_OSG "Build OpenSceneGraph renderer (requires OpenSceneGraph)" OFF)
 
 set(_srlib_osg_components osg osgDB osgGA osgUtil osgViewer osgShadow)
 if(SRLIB_ENABLE_OSG)

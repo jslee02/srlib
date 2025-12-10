@@ -9,6 +9,7 @@ version = "0.1.0"
 cmake = ">=4.2.1,<5"
 glew = ">=2.2.0,<3"
 ninja = ">=1.13.2,<2"
+openscenegraph = ">=3.6.5,<4"
 
 [target.linux-64.dependencies]
 freeglut = ">=3.2.2,<4"
@@ -21,7 +22,7 @@ freeglut = ">=3.2.2,<4"
 [tasks]
 
 [tasks.configure]
-cmd = "cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release"
+cmd = "cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DSRLIB_ENABLE_OSG=ON"
 
 [tasks.build]
 cmd = "cmake --build build"
