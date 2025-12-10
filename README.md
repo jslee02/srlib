@@ -1,4 +1,5 @@
 # srLib
+[![CI](https://github.com/jslee02/srlib/actions/workflows/ci.yml/badge.svg)](https://github.com/jslee02/srlib/actions/workflows/ci.yml)
 
 **srLib** is a simulation library for rigid multi-body dynamics, developed at [Robotics Lab](https://sites.google.com/robotics.snu.ac.kr/fcp/) in [Seoul National University](http://www.snu.ac.kr/). Thanks to its flexibility, various modern robot platforms can be modeled and simulated using this library without any deep knowledge of dynamics. Primitive geometries, joints, actuation method, and sensors are included.
 
