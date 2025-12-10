@@ -7,9 +7,11 @@ Visit the [website](http://robotics.snu.ac.kr/srlib/) of srLib for more informat
 
 ## Demo
 
-HelloWorld example (auto-play GIF):
+HelloWorld example:
 
-![HelloWorld demo](assets/helloworld-demo.gif)
+<p align="center">
+  <img src="assets/helloworld-demo.gif" alt="HelloWorld demo" />
+</p>
 
 ## Contributors
 
