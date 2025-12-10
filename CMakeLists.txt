@@ -27,20 +27,37 @@ find_package(GLEW QUIET)
 
 # GLUT
 find_package(GLUT QUIET)
-if(NOT GLUT_FOUND AND DEFINED ENV{CONDA_PREFIX})
-  # Fallback for conda/pixi layouts on all platforms.
-  set(_conda $ENV{CONDA_PREFIX})
+if(NOT GLUT_FOUND)
+  # Fallback search for common package manager prefixes (conda/pixi, Homebrew).
+  set(_glut_hints)
+  if(DEFINED ENV{CONDA_PREFIX})
+    list(APPEND _glut_hints
+      "$ENV{CONDA_PREFIX}/include"
+      "$ENV{CONDA_PREFIX}/lib"
+      "$ENV{CONDA_PREFIX}/Library/include"
+      "$ENV{CONDA_PREFIX}/Library/lib"
+    )
+  endif()
+  if(DEFINED ENV{HOMEBREW_PREFIX})
+    list(APPEND _glut_hints
+      "$ENV{HOMEBREW_PREFIX}/include"
+      "$ENV{HOMEBREW_PREFIX}/lib"
+    )
+  endif()
+  if(EXISTS "/opt/homebrew")
+    list(APPEND _glut_hints "/opt/homebrew/include" "/opt/homebrew/lib")
+  endif()
+  if(EXISTS "/usr/local")
+    list(APPEND _glut_hints "/usr/local/include" "/usr/local/lib")
+  endif()
+
   find_path(GLUT_INCLUDE_DIR
     NAMES glut.h
-    HINTS
-      "${_conda}/include"
-      "${_conda}/Library/include"
+    HINTS ${_glut_hints}
   )
   find_library(GLUT_glut_LIBRARY
     NAMES glut freeglut freeglut_static
-    HINTS
-      "${_conda}/lib"
-      "${_conda}/Library/lib"
+    HINTS ${_glut_hints}
   )
   if(GLUT_INCLUDE_DIR AND GLUT_glut_LIBRARY)
     set(GLUT_FOUND TRUE)

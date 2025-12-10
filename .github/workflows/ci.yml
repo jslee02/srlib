@@ -31,6 +31,10 @@ jobs:
         with:
           cache: true
 
+      - name: Install GLUT (macOS)
+        if: runner.os == 'macOS'
+        run: brew install freeglut
+
       - name: Install dependencies
         run: pixi install
 
