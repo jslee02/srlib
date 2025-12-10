@@ -1,15 +1,25 @@
-file(GLOB_RECURSE sources ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
+file(GLOB_RECURSE SRLIB_SOURCES CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
 
-set(osg_source ${CMAKE_CURRENT_SOURCE_DIR}/Renderer/SROpenSceneGraph.cpp)
-if(NOT (SRLIB_ENABLE_OSG AND OPENSCENEGRAPH_FOUND))
-  list(REMOVE_ITEM sources ${osg_source})
+set(_osg_source ${CMAKE_CURRENT_SOURCE_DIR}/Renderer/SROpenSceneGraph.cpp)
+if(NOT SRLIB_ENABLE_OSG)
+  list(REMOVE_ITEM SRLIB_SOURCES ${_osg_source})
 endif()
 
-srlib_get_headers(headers)
+add_library(${PROJECT_NAME} ${SRLIB_SOURCES} ${SRLIB_HEADERS})
 
-add_library(${PROJECT_NAME} ${headers} ${sources})
+target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)
 
-if(SRLIB_ENABLE_OSG AND OPENSCENEGRAPH_FOUND)
-  target_include_directories(${PROJECT_NAME} PRIVATE ${OPENSCENEGRAPH_INCLUDE_DIRS})
-  target_link_libraries(${PROJECT_NAME} PRIVATE ${OPENSCENEGRAPH_LIBRARIES})
-endif()
+target_include_directories(${PROJECT_NAME}
+  PUBLIC
+    $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include/srlib>
+    $<INSTALL_INTERFACE:include/srlib>
+    ${SRLIB_THIRD_PARTY_INCLUDE_DIRS}
+    $<$<BOOL:${SRLIB_ENABLE_OSG}>:${SRLIB_OSG_INCLUDE_DIRS}>
+)
+
+target_link_libraries(${PROJECT_NAME}
+  PUBLIC
+    ${SRLIB_THIRD_PARTY_LIBS}
+  PRIVATE
+    $<$<BOOL:${SRLIB_ENABLE_OSG}>:${SRLIB_OSG_LIBRARIES}>
+)

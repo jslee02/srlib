@@ -5,13 +5,7 @@ file(GLOB sources "*.cpp")
 
 add_executable(${example_name} ${headers} ${sources})
 
-target_link_libraries(
-  ${example_name}
-  ${PROJECT_NAME}
-  ${OPENGL_LIBRARIES}
-  ${GLEW_LIBRARIES}
-  ${GLUT_LIBRARIES}
-)
+target_link_libraries(${example_name} PRIVATE ${PROJECT_NAME})
 
 set_target_properties(
   ${example_name} PROPERTIES

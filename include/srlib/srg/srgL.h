@@ -39,7 +39,7 @@ OpenGL libraries for multi platform.
 #endif
 
 // LINUX
-#ifdef linux
+#if defined(__linux__) || defined(linux)
 	#include <GL/glew.h>
 	#include <GL/glut.h>
 	#include <unistd.h>
